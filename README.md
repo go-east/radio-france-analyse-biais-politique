@@ -259,7 +259,6 @@ https://...,L'édito politique,Titre de l'épisode,2024-01-15,Description...,Fal
 radiofrance-analysis/
 ├── 📓 radiofrance.ipynb           # Notebook principal (transcription + analyse)
 ├── 📓 calibration.ipynb           # Notebook de test/calibration du modèle
-├── 📓 visualization.ipynb         # Notebook de visualisation des résultats
 │
 ├── 📄 franceinter.csv             # Données d'entrée (URLs des épisodes)
 ├── 📄 transcription_results.json  # Transcriptions avec diarisation
@@ -366,7 +365,7 @@ Si vous utilisez ce travail dans vos recherches, merci de citer :
 
 <p align="center">
   <b>⚠️ Avertissement</b><br>
-  <i>Cette étude est un projet de recherche exploratoire. Les résultats doivent être interprétés avec prudence compte tenu des limites méthodologiques identifiées. Ce projet n'a pas vocation à porter un jugement définitif sur la ligne éditoriale de France Inter.</i>
+  <i>Cette étude est un projet de recherche exploratoire. Les résultats doivent être interprétés avec prudence compte tenu des limites méthodologiques identifiées. Ce projet n'a pas vocation à porter un jugement définitif sur la ligne éditoriale de France Inter. Ce projest est un hackathon personnel réalisé en 24H</i>
 </p>
 
 ---
