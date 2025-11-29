@@ -67,6 +67,34 @@ Droite            ▏                                      0,7% (1)
 Extrême droite    ▏                                      0,7% (1)
 ```
 
+### Distribution politique globale
+
+![Distribution globale](images/viz_01_distribution_globale.png)
+
+### Orientation par émission
+
+![Orientation par émission](images/viz_03_orientation_par_emission.png)
+
+### Rôles des intervenants
+
+![Rôles des intervenants](images/viz_04_roles_intervenants.png)
+
+### Tons employés
+
+![Tons](images/viz_05_tons.png)
+
+### Pluralisme des opinions
+
+![Pluralisme](images/viz_06_pluralisme.png)
+
+### Spectre politique des intervenants
+
+![Spectre politique](images/viz_07_spectre_politique.png)
+
+### Heatmap par émission
+
+![Heatmap émissions](images/viz_08_heatmap_emissions.png)
+
 ### Émissions analysées
 
 | Émission                       | Épisodes | Type                     |
