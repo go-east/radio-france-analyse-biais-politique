@@ -29,25 +29,25 @@ Ce projet analyse automatiquement l'orientation politique des émissions de Fran
 
 ### Corpus analysé
 
-| Métrique | Valeur |
-|----------|--------|
-| Épisodes analysés | 145 |
-| Émissions différentes | 11 |
-| Locuteurs identifiés | 764 |
-| Moyenne locuteurs/épisode | 5,3 |
-| Taux de réussite | 100% |
+| Métrique                  | Valeur |
+| ------------------------- | ------ |
+| Épisodes analysés         | 145    |
+| Émissions différentes     | 11     |
+| Locuteurs identifiés      | 764    |
+| Moyenne locuteurs/épisode | 5,3    |
+| Taux de réussite          | 100%   |
 
 ## 📊 Résultats clés
 
 ### Orientation politique moyenne
 
-| Orientation | Pourcentage |
-|-------------|:-----------:|
-| Extrême gauche | 14,5% |
-| **Social-démocrate** | **36,6%** |
-| Centre | 27,9% |
-| Droite | 12,3% |
-| Extrême droite | 6,6% |
+| Orientation          | Pourcentage |
+| -------------------- | :---------: |
+| Extrême gauche       |    14,5%    |
+| **Social-démocrate** |  **36,6%**  |
+| Centre               |    27,9%    |
+| Droite               |    12,3%    |
+| Extrême droite       |    6,6%     |
 
 ### Biais éditorial détecté
 
@@ -57,7 +57,7 @@ Ce projet analyse automatiquement l'orientation politique des émissions de Fran
 
 ### Orientation dominante par épisode
 
-![Orientation dominante par épisode](outputs/dominant_orientation.png)
+![Orientation dominante par épisode](images/dominant_orientation.png)
 
 ```
 Social-démocrate  ████████████████████████████████████  69,7% (101)
@@ -69,19 +69,19 @@ Extrême droite    ▏                                      0,7% (1)
 
 ### Émissions analysées
 
-| Émission | Épisodes | Type |
-|----------|:--------:|------|
-| L'édito politique | 16 | Commentaire politique |
-| Géopolitique | 15 | Affaires internationales |
-| Zoom Zoom Zen | 15 | Bien-être |
-| Le billet de Bertrand Chameroy | 15 | Satire |
-| La Terre au carré | 15 | Environnement/Science |
-| Affaire Sensible | 15 | Documentaire |
-| Journal de 07h00 | 14 | Information |
-| Charline explose les faits | 12 | Humour |
-| On n'arrête pas l'éco | 11 | Économie |
-| L'éco d'Inter | 10 | Économie |
-| Totemic | 7 | Culture |
+| Émission                       | Épisodes | Type                     |
+| ------------------------------ | :------: | ------------------------ |
+| L'édito politique              |    16    | Commentaire politique    |
+| Géopolitique                   |    15    | Affaires internationales |
+| Zoom Zoom Zen                  |    15    | Bien-être                |
+| Le billet de Bertrand Chameroy |    15    | Satire                   |
+| La Terre au carré              |    15    | Environnement/Science    |
+| Affaire Sensible               |    15    | Documentaire             |
+| Journal de 07h00               |    14    | Information              |
+| Charline explose les faits     |    12    | Humour                   |
+| On n'arrête pas l'éco          |    11    | Économie                 |
+| L'éco d'Inter                  |    10    | Économie                 |
+| Totemic                        |    7     | Culture                  |
 
 ## 🔬 Méthodologie
 
@@ -104,13 +104,13 @@ Extrême droite    ▏                                      0,7% (1)
 
 Le modèle classe le contenu selon 5 catégories du spectre politique français :
 
-| Catégorie | Partis associés | Caractéristiques |
-|-----------|-----------------|------------------|
-| **Extrême gauche** | LFI, NPA | Anticapitalisme, lutte des classes, anti-impérialisme |
-| **Social-démocrate** | PS, EELV | Réformisme, justice sociale, écologie, féminisme |
-| **Centre** | Renaissance, MoDem | Pragmatisme, libéralisme modéré, européisme |
-| **Droite** | LR | Conservatisme, libéralisme économique, autorité |
-| **Extrême droite** | RN, Reconquête | Nationalisme, anti-immigration, souverainisme |
+| Catégorie            | Partis associés    | Caractéristiques                                      |
+| -------------------- | ------------------ | ----------------------------------------------------- |
+| **Extrême gauche**   | LFI, NPA           | Anticapitalisme, lutte des classes, anti-impérialisme |
+| **Social-démocrate** | PS, EELV           | Réformisme, justice sociale, écologie, féminisme      |
+| **Centre**           | Renaissance, MoDem | Pragmatisme, libéralisme modéré, européisme           |
+| **Droite**           | LR                 | Conservatisme, libéralisme économique, autorité       |
+| **Extrême droite**   | RN, Reconquête     | Nationalisme, anti-immigration, souverainisme         |
 
 ### Analyse par locuteur
 
@@ -160,26 +160,28 @@ TEST_MP3_URL = "https://drive.google.com/uc?export=download&id=VOTRE_ID"
 
 Pour valider la calibration, nous recommandons de tester avec des discours de personnalités politiques connues :
 
-| Personnalité | Orientation attendue | 
-|--------------|---------------------|
-| Jean-Luc Mélenchon | Extrême gauche |
-| Olivier Faure | Social-démocrate |
-| Emmanuel Macron | Centre |
-| Éric Ciotti | Droite |
-| Marine Le Pen | Extrême droite |
+| Personnalité       | Orientation attendue |
+| ------------------ | -------------------- |
+| Jean-Luc Mélenchon | Extrême gauche       |
+| Olivier Faure      | Social-démocrate     |
+| Emmanuel Macron    | Centre               |
+| Éric Ciotti        | Droite               |
+| Marine Le Pen      | Extrême droite       |
 
 ### Comment calibrer
 
 1. **Téléchargez** un extrait audio d'un discours politique (2-5 min)
 2. **Uploadez** sur Google Drive et récupérez le lien de partage
 3. **Convertissez** le lien :
+
    ```
    # Lien de partage :
    https://drive.google.com/file/d/XXXXX/view?usp=sharing
-   
+
    # Lien de téléchargement direct :
    https://drive.google.com/uc?export=download&id=XXXXX
    ```
+
 4. **Exécutez** `calibration.ipynb` avec cette URL
 5. **Comparez** le résultat avec l'orientation attendue
 
@@ -220,7 +222,7 @@ https://...,L'édito politique,Titre de l'épisode,2024-01-15,Description...,Fal
 
 ```python
 # Exécuter les cellules de visualisation
-# Génère les graphiques dans le dossier outputs/
+# Génère les graphiques dans le dossier images/
 ```
 
 ## 📁 Structure du projet
@@ -236,7 +238,7 @@ radiofrance-analysis/
 ├── 📄 political_analysis.json     # Résultats de l'analyse politique
 ├── 📄 political_summary.csv       # Résumé exportable
 │
-└── 📁 outputs/
+└── 📁 images/
     ├── 🖼️ dominant_orientation.png
     ├── 🖼️ viz_01_distribution_globale.png
     ├── 🖼️ viz_02_biais_editorial.png
@@ -252,20 +254,20 @@ radiofrance-analysis/
 
 ### Limites méthodologiques
 
-| Limite | Description | Impact |
-|--------|-------------|--------|
-| **Erreurs de calcul LLM** | La répartition politique n'atteint pas toujours 100% | Moyen |
-| **Subjectivité du prompt** | Le prompt influence les résultats | Élevé |
-| **Granularité temporelle** | Analyse par émission, pas à la minute | Moyen |
-| **Un seul LLM** | Biais spécifiques à GPT-4.1-mini | Élevé |
+| Limite                     | Description                                          | Impact |
+| -------------------------- | ---------------------------------------------------- | ------ |
+| **Erreurs de calcul LLM**  | La répartition politique n'atteint pas toujours 100% | Moyen  |
+| **Subjectivité du prompt** | Le prompt influence les résultats                    | Élevé  |
+| **Granularité temporelle** | Analyse par émission, pas à la minute                | Moyen  |
+| **Un seul LLM**            | Biais spécifiques à GPT-4.1-mini                     | Élevé  |
 
 ### Limites techniques
 
-| Limite | Description | Impact |
-|--------|-------------|--------|
-| **Biais du modèle** | Reflète les biais d'entraînement | Moyen |
-| **Diarisation** | Erreurs possibles lors d'échanges rapides | Faible |
-| **Catégories simplifiées** | 5 catégories pour un spectre complexe | Moyen |
+| Limite                       | Description                                     | Impact |
+| ---------------------------- | ----------------------------------------------- | ------ |
+| **Biais du modèle**          | Reflète les biais d'entraînement                | Moyen  |
+| **Diarisation**              | Erreurs possibles lors d'échanges rapides       | Faible |
+| **Catégories simplifiées**   | 5 catégories pour un spectre complexe           | Moyen  |
 | **Neutralité = 20% partout** | Peut ne pas refléter un vrai contenu apolitique | Faible |
 
 ## 🔧 Pistes d'amélioration
@@ -282,16 +284,16 @@ radiofrance-analysis/
 
 Le projet génère automatiquement 8 visualisations :
 
-| Fichier | Description |
-|---------|-------------|
-| `viz_01_distribution_globale.png` | Distribution politique moyenne (barres + camembert) |
-| `viz_02_biais_editorial.png` | Répartition du biais éditorial |
-| `viz_03_orientation_par_emission.png` | Orientation par émission (barres empilées) |
-| `viz_04_roles_intervenants.png` | Analyse des rôles des speakers |
-| `viz_05_tons.png` | Distribution des tons employés |
-| `viz_06_pluralisme.png` | Score de pluralisme par émission |
-| `viz_07_spectre_politique.png` | Positionnement gauche-droite des intervenants |
-| `viz_08_heatmap_emissions.png` | Heatmap du profil politique par émission |
+| Fichier                               | Description                                         |
+| ------------------------------------- | --------------------------------------------------- |
+| `viz_01_distribution_globale.png`     | Distribution politique moyenne (barres + camembert) |
+| `viz_02_biais_editorial.png`          | Répartition du biais éditorial                      |
+| `viz_03_orientation_par_emission.png` | Orientation par émission (barres empilées)          |
+| `viz_04_roles_intervenants.png`       | Analyse des rôles des speakers                      |
+| `viz_05_tons.png`                     | Distribution des tons employés                      |
+| `viz_06_pluralisme.png`               | Score de pluralisme par émission                    |
+| `viz_07_spectre_politique.png`        | Positionnement gauche-droite des intervenants       |
+| `viz_08_heatmap_emissions.png`        | Heatmap du profil politique par émission            |
 
 ## 📬 Accès aux données
 
@@ -300,6 +302,7 @@ Les données brutes (transcriptions et analyses) sont disponibles sur demande po
 **Contact** : 📧 [bg@benjamin-gabay.com](mailto:bg@benjamin-gabay.com)
 
 Merci de préciser :
+
 - Votre nom et affiliation
 - L'objectif de votre demande
 - L'utilisation prévue des données
