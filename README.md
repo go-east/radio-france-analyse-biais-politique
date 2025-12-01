@@ -355,8 +355,8 @@ Si vous utilisez ce travail dans vos recherches, merci de citer :
 ```bibtex
 @software{radiofrance_analysis,
   title = {Analyse du Biais Politique de France Inter},
-  author = {Gabay, Benjamin},
-  year = {2024},
+  author = {Gabay, Benjamin, and Anonymous Dolphin},
+  year = {2025},
   url = {https://github.com/votre-username/radiofrance-analysis}
 }
 ```
