@@ -306,7 +306,7 @@ radiofrance-analysis/
 
 - **Diarisation imparfaite** : Erreurs possibles lors d'échanges rapides, de chevauchements de voix ou de changements de locuteurs fréquents.
 
-- **Neutralité = 20% partout** : Un locuteur neutre est codé avec 20% sur chaque catégorie, ce qui peut ne pas refléter un vrai contenu apolitique ou strictement factuel. Cette stratégie tend à sur représenter ceux qui sont sous représenter.
+- **Neutralité = 20% partout** : Un locuteur neutre est codé avec 20% sur chaque catégorie, ce qui peut ne pas refléter un vrai contenu apolitique ou strictement factuel. Cette stratégie tend à sur représenter ceux qui sont sous représentés et vice versa.
 
 - **Pas de vérification humaine systématique** : Absence de validation par des annotateurs humains pour établir un ground truth et mesurer la précision réelle du système.
 
