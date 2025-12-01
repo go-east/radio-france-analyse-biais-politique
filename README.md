@@ -43,11 +43,14 @@ Ce projet analyse automatiquement l'orientation politique des émissions de Fran
 
 | Orientation          | Pourcentage |
 | -------------------- | :---------: |
-| Extrême gauche       |    14,5%    |
-| **Social-démocrate** |  **36,6%**  |
-| Centre               |    27,9%    |
-| Droite               |    12,3%    |
+| Extrême gauche       |    14,7%    |
+| **Social-démocrate** |  **37,4%**  |
+| Centre               |    28,7%    |
+| Droite               |    12,7%    |
 | Extrême droite       |    6,6%     |
+
+**Total Gauche** (Extrême gauche + Social-démocrate) : **52,1%**  
+**Total Droite** (Droite + Extrême droite) : **19,3%**
 
 ### Biais éditorial détecté
 
@@ -202,13 +205,13 @@ Pour valider la calibration, nous recommandons de tester avec des discours de pe
 2. **Uploadez** sur Google Drive et récupérez le lien de partage
 3. **Convertissez** le lien :
 
-   ```
+```
    # Lien de partage :
    https://drive.google.com/file/d/XXXXX/view?usp=sharing
 
    # Lien de téléchargement direct :
    https://drive.google.com/uc?export=download&id=XXXXX
-   ```
+```
 
 4. **Exécutez** `calibration.ipynb` avec cette URL
 5. **Comparez** le résultat avec l'orientation attendue
@@ -259,7 +262,6 @@ https://...,L'édito politique,Titre de l'épisode,2024-01-15,Description...,Fal
 radiofrance-analysis/
 ├── 📓 radiofrance.ipynb           # Notebook principal (transcription + analyse)
 ├── 📓 calibration.ipynb           # Notebook de test/calibration du modèle
-├── 📓 visualization.ipynb         # Notebook de visualisation des résultats
 │
 ├── 📄 franceinter.csv             # Données d'entrée (URLs des épisodes)
 ├── 📄 transcription_results.json  # Transcriptions avec diarisation
@@ -282,31 +284,67 @@ radiofrance-analysis/
 
 ### Limites méthodologiques
 
-| Limite                     | Description                                          | Impact |
-| -------------------------- | ---------------------------------------------------- | ------ |
-| **Erreurs de calcul LLM**  | La répartition politique n'atteint pas toujours 100% | Moyen  |
-| **Subjectivité du prompt** | Le prompt influence les résultats                    | Élevé  |
-| **Granularité temporelle** | Analyse par émission, pas à la minute                | Moyen  |
-| **Un seul LLM**            | Biais spécifiques à GPT-4.1-mini                     | Élevé  |
+- **Erreurs de calcul du LLM** : Les pourcentages de répartition politique n'atteignent pas toujours exactement 100%. Un système de normalisation a été implémenté pour corriger ces écarts, mais cela introduit une légère approximation dans les scores finaux.
+
+- **Subjectivité du prompt** : Le prompt d'analyse peut être discutable et influence fortement les résultats. Le choix des termes, des exemples et de la structure du prompt constitue un biais inhérent à la méthode.
+
+- **Granularité temporelle** : Analyse par épisode complet plutôt que par minute, sans pondération par temps de parole. Un intervenant parlant 30 secondes a le même poids qu'un intervenant parlant 30 minutes dans le calcul final.
+
+- **Modèle unique** : Utilisation d'un seul LLM (GPT-4.1-mini) avec ses biais propres. Les modèles de langage reflètent les biais de leurs données d'entraînement et peuvent avoir des sensibilités différentes selon les sujets.
+
+- **Qualité de transcription** : Qualité variable avec des scores de confiance parfois bas (0,2-0,5). Les erreurs de transcription peuvent impacter l'analyse politique, notamment sur les termes techniques ou les noms propres.
+
+- **Taille de l'échantillon** : L'analyse porte sur un échantillon spécifique de 145 épisodes qui nécessite une documentation complète pour permettre la reproductibilité et l'évaluation de la représentativité.
+
+- **Catégorisation simplifiée** : 5 catégories pour représenter un spectre politique complexe. Cette simplification peut masquer des nuances importantes et des positions hybrides.
+
+- **Absence de pondération contextuelle** : Le système ne distingue pas entre les propos rapportés (citations) et les opinions exprimées directement par les intervenants.
 
 ### Limites techniques
 
-| Limite                       | Description                                     | Impact |
-| ---------------------------- | ----------------------------------------------- | ------ |
-| **Biais du modèle**          | Reflète les biais d'entraînement                | Moyen  |
-| **Diarisation**              | Erreurs possibles lors d'échanges rapides       | Faible |
-| **Catégories simplifiées**   | 5 catégories pour un spectre complexe           | Moyen  |
-| **Neutralité = 20% partout** | Peut ne pas refléter un vrai contenu apolitique | Faible |
+- **Biais du modèle** : Reflète les biais d'entraînement de GPT-4.1-mini, notamment sur les sujets contemporains ou controversés.
+
+- **Diarisation imparfaite** : Erreurs possibles lors d'échanges rapides, de chevauchements de voix ou de changements de locuteurs fréquents.
+
+- **Neutralité = 20% partout** : Un locuteur neutre est codé avec 20% sur chaque catégorie, ce qui peut ne pas refléter un vrai contenu apolitique ou strictement factuel. Cette stratégie tend à sur représenter ceux qui sont sous représenter.
+
+- **Pas de vérification humaine systématique** : Absence de validation par des annotateurs humains pour établir un ground truth et mesurer la précision réelle du système.
 
 ## 🔧 Pistes d'amélioration
 
-- [ ] Valider que chaque répartition totalise 100%
-- [ ] Utiliser 3-4 LLMs (Claude, Gemini, Llama) et agréger les résultats
-- [ ] Intégrer une analyse temporelle (pondération par temps de parole)
-- [ ] Faire valider le prompt par des experts en sciences politiques
-- [ ] Comparer avec des annotations humaines sur un échantillon témoin
-- [ ] Ajouter une analyse de sentiment plus fine
-- [ ] Étendre à d'autres stations (France Culture, France Info, RTL, Europe 1)
+### Améliorations méthodologiques prioritaires
+
+- **Validation croisée multi-modèles** : Utiliser 3-4 LLMs différents (Claude, Gemini, Llama) et agréger les résultats pour plus de robustesse. Permet de réduire les biais spécifiques à un modèle unique.
+
+- **Pondération temporelle** : Analyser minute par minute et pondérer selon le temps de parole effectif de chaque intervenant. Donnerait un poids proportionnel à l'exposition médiatique réelle.
+
+- **Système de validation automatique** : Vérifier automatiquement que les pourcentages totalisent exactement 100% et corriger les écarts par normalisation proportionnelle systématique.
+
+- **Validation humaine avec ground truth** : Comparer avec des annotations humaines sur un échantillon témoin (50-100 épisodes) pour établir des métriques de précision (accuracy, F1-score) et identifier les cas d'erreur systématique.
+
+- **Revue par des experts en sciences politiques** : Faire valider le prompt, les catégories et la méthodologie par des chercheurs en sciences politiques pour garantir la pertinence académique.
+
+### Améliorations techniques
+
+- **Documentation précise de l'échantillonnage** : Documenter en détail la méthode de sélection des épisodes, les critères d'inclusion/exclusion, et les biais potentiels de l'échantillon.
+
+- **Distinction citation/opinion** : Implémenter un système pour différencier les propos rapportés des opinions directement exprimées par les locuteurs.
+
+- **Analyse de l'incertitude** : Ajouter des intervalles de confiance sur chaque score politique pour quantifier l'incertitude du modèle.
+
+- **Tracking longitudinal** : Analyser l'évolution temporelle des orientations pour détecter d'éventuels changements de ligne éditoriale.
+
+- **Analyse comparative inter-médias** : Étendre la méthode à d'autres stations (France Culture, France Info, RTL, Europe 1) pour permettre des comparaisons.
+
+### Améliorations de l'analyse
+
+- **Analyse de sentiment fine** : Intégrer une analyse de sentiment (positif/négatif/neutre) en complément de l'orientation politique.
+
+- **Détection des figures rhétoriques** : Identifier l'usage d'ironie, de sarcasme ou de second degré qui peut fausser l'analyse littérale.
+
+- **Analyse des sujets traités** : Corréler les orientations politiques détectées avec les thématiques abordées (économie, environnement, société, international).
+
+- **Mesure du pluralisme affiné** : Développer des métriques plus sophistiquées du pluralisme (indice de Herfindahl-Hirschman, entropie de Shannon) au-delà de l'écart-type simple.
 
 ## 📈 Visualisations générées
 
@@ -356,8 +394,8 @@ Si vous utilisez ce travail dans vos recherches, merci de citer :
 ```bibtex
 @software{radiofrance_analysis,
   title = {Analyse du Biais Politique de France Inter},
-  author = {Gabay, Benjamin},
-  year = {2024},
+  author = {Gabay, Benjamin and Anonymous Dolphin},
+  year = {2025},
   url = {https://github.com/votre-username/radiofrance-analysis}
 }
 ```
@@ -366,7 +404,7 @@ Si vous utilisez ce travail dans vos recherches, merci de citer :
 
 <p align="center">
   <b>⚠️ Avertissement</b><br>
-  <i>Cette étude est un projet de recherche exploratoire. Les résultats doivent être interprétés avec prudence compte tenu des limites méthodologiques identifiées. Ce projet n'a pas vocation à porter un jugement définitif sur la ligne éditoriale de France Inter.</i>
+  <i>Cette étude est un projet de recherche exploratoire réalisé en 24 heures dans le cadre d'un hackathon personnel. Les résultats doivent être interprétés avec prudence compte tenu des limites méthodologiques identifiées. Ce projet n'a pas vocation à porter un jugement définitif sur la ligne éditoriale de France Inter, mais à explorer les possibilités d'analyse automatisée du contenu médiatique.</i>
 </p>
 
 ---
